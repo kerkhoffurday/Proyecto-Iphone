@@ -1,5 +1,5 @@
 //
-//  RecuperarContraseñaViewController.swift
+//  HOMEViewController.swift
 //  Proyecto_Iphone
 //
 //  Created by Patrick Kerkhoff on 10/9/20.
@@ -8,25 +8,22 @@
 
 import UIKit
 
-class RecuperarContrasen_aViewController: UIViewController {
+class HOMEViewController: UIViewController {
 
-    @IBOutlet weak var txtEmail: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
-    @IBAction func load(_ sender: UIButton) {
-        self.validarRecuperarContra()
+
+    @IBAction func btnTeclado(_ sender: Any) {
+        self.view.endEditing(true)
     }
     
-    func validarRecuperarContra() {
-        if self.txtEmail.text?.isValidEmail == false{
-            self.crearAlertaController(titulo: "Error", mensaje: "Ingrese un Email", tituloBoton: "Aceptar")
-            return
-        }
+    @IBAction func btnExit(_ sender : UIButton){
+        self.navigationController?.popViewController(animated: true)
     }
+    
     /*
     // MARK: - Navigation
 

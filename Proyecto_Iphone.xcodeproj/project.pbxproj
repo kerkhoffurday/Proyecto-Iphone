@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B2456A822553A0E500F9A9E4 /* HOMEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2456A812553A0E500F9A9E4 /* HOMEViewController.swift */; };
 		BB2C64472530C1A000B58FE4 /* RegistroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2C64462530C1A000B58FE4 /* RegistroViewController.swift */; };
 		BB2C64492530C1C300B58FE4 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2C64482530C1C300B58FE4 /* LogInViewController.swift */; };
 		BB2C644B2530C1DA00B58FE4 /* RecuperarContraseñaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2C644A2530C1DA00B58FE4 /* RecuperarContraseñaViewController.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B2456A812553A0E500F9A9E4 /* HOMEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HOMEViewController.swift; sourceTree = "<group>"; };
 		BB2C64462530C1A000B58FE4 /* RegistroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistroViewController.swift; sourceTree = "<group>"; };
 		BB2C64482530C1C300B58FE4 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		BB2C644A2530C1DA00B58FE4 /* RecuperarContraseñaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecuperarContraseñaViewController.swift"; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				BB2C64462530C1A000B58FE4 /* RegistroViewController.swift */,
 				BB2C64482530C1C300B58FE4 /* LogInViewController.swift */,
 				BB2C644A2530C1DA00B58FE4 /* RecuperarContraseñaViewController.swift */,
+				B2456A812553A0E500F9A9E4 /* HOMEViewController.swift */,
 			);
 			path = Proyecto_Iphone;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				BB5AB89F252E2B9C0096D449 /* AppDelegate.swift in Sources */,
 				BB2C64492530C1C300B58FE4 /* LogInViewController.swift in Sources */,
 				BB5AB8A1252E2B9C0096D449 /* SceneDelegate.swift in Sources */,
+				B2456A822553A0E500F9A9E4 /* HOMEViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

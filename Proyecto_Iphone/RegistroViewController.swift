@@ -10,6 +10,7 @@ import UIKit
 
 class RegistroViewController: UIViewController {
 
+    @IBOutlet weak var constraintBottomScroll: NSLayoutConstraint!
     @IBOutlet weak var txtNombres: UITextField!
     @IBOutlet weak var txtApellidos: UITextField!
     @IBOutlet weak var txtEmail: UITextField!
@@ -18,113 +19,94 @@ class RegistroViewController: UIViewController {
     @IBOutlet weak var txtCarrera: UITextField!
     @IBOutlet weak var txtSede: UITextField!
     @IBOutlet weak var txtFechaNacimiento: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
     
-    func validarRegistro(){
-        if self.txtNombres.text == ""{
-            let alert = UIAlertController(title: "Error", message: "Rellenar campo Nombres", preferredStyle: .actionSheet)
-            let botonAlert = UIAlertAction(title: "Aceptar", style: .cancel) { (action) in
-                print("Acabas de presionar la acción Aceptar")
-            }
-            alert.addAction(botonAlert)
-            self.present(alert, animated: true) {
-            }
-        }else{
-            print("Nombres correcto")
-        }
-        
-        if self.txtApellidos.text == ""{
-            let alert = UIAlertController(title: "Error", message: "Rellenar campo Apellidos", preferredStyle: .actionSheet)
-            let botonAlert = UIAlertAction(title: "Aceptar", style: .cancel) { (action) in
-                print("Acabas de presionar la acción Aceptar")
-            }
-            alert.addAction(botonAlert)
-            self.present(alert, animated: true) {
-            }
-        }else{
-            print("Apellidos correcto")
-        }
-        
-        if self.txtEmail.text?.isValidEmail == false{
-            let alert = UIAlertController(title: "Error", message: "Ingrese un Email", preferredStyle: .alert)
-            let botonAlert = UIAlertAction(title: "Aceptar", style: .cancel) { (action) in
-                print("Acabas de presionar la acción Aceptar")
-            }
-            alert.addAction(botonAlert)
-            self.present(alert, animated: true) {
-                
-            }
-        }else{
-            print("Email correcto")
-        }
-        
-        if self.txtContraseña.text == ""{
-            let alert = UIAlertController(title: "Error", message: "Campo Contraseña vacio", preferredStyle: .actionSheet)
-            let botonAlert = UIAlertAction(title: "Aceptar", style: .cancel) { (action) in
-                print("Acabas de presionar la acción Aceptar")
-            }
-            alert.addAction(botonAlert)
-            self.present(alert, animated: true) {
-            }
-        }else{
-            print("Contraseña correcta")
-        }
-        
-        if self.txtRepetirContraseña.text != txtContraseña.text{
-            let alert = UIAlertController(title: "Error", message: "Contraseña incorrecta", preferredStyle: .actionSheet)
-            let botonAlert = UIAlertAction(title: "Aceptar", style: .cancel) { (action) in
-                print("Acabas de presionar la acción Aceptar")
-            }
-            alert.addAction(botonAlert)
-            self.present(alert, animated: true) {
-            }
-        }else{
-            print("Contraseña correcta")
-        }
-        
-        if self.txtCarrera.text == ""{
-            let alert = UIAlertController(title: "Error", message: "Rellenar campo Carrera", preferredStyle: .actionSheet)
-            let botonAlert = UIAlertAction(title: "Aceptar", style: .cancel) { (action) in
-                print("Acabas de presionar la acción Aceptar")
-            }
-            alert.addAction(botonAlert)
-            self.present(alert, animated: true) {
-            }
-        }else{
-            print("Carrera correcto")
-        }
-        
-        if self.txtSede.text == ""{
-            let alert = UIAlertController(title: "Error", message: "Rellenar campo Sede", preferredStyle: .actionSheet)
-            let botonAlert = UIAlertAction(title: "Aceptar", style: .cancel) { (action) in
-                print("Acabas de presionar la acción Aceptar")
-            }
-            alert.addAction(botonAlert)
-            self.present(alert, animated: true) {
-            }
-        }else{
-            print("Sede correcto")
-        }
-        
-        if self.txtFechaNacimiento.text == ""{
-            let alert = UIAlertController(title: "Error", message: "Rellenar campo Fecha Nacimiento", preferredStyle: .actionSheet)
-            let botonAlert = UIAlertAction(title: "Aceptar", style: .cancel) { (action) in
-                print("Acabas de presionar la acción Aceptar")
-            }
-            alert.addAction(botonAlert)
-            self.present(alert, animated: true) {
-            }
-        }else{
-            print("Fecha de Nacimiento correcto")
-        }
+    override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
     }
     
     @IBAction func load(_ sender: Any) {
         self.validarRegistro()
+    }
+    
+    @IBAction func btnTeclado(_ sender: Any) {
+        self.view.endEditing(true)
+    }
+    
+    @IBAction func btnExit(_ sender : UIButton){
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func validarRegistro(){
+    
+        if self.txtNombres.text?.count == 0{
+            self.crearAlertaController(titulo: "Error", mensaje: "Rellenar campo Nombres", tituloBoton: "Aceptar")
+            return
+        }
+        
+        if self.txtApellidos.text?.count == 0{
+            self.crearAlertaController(titulo: "Error", mensaje: "Rellenar campo Apellidos", tituloBoton: "Aceptar")
+            return
+        }
+        
+        if self.txtEmail.text?.isValidEmail == false{
+            self.crearAlertaController(titulo: "Error", mensaje: "Ingrese un Email", tituloBoton: "Aceptar")
+            return
+        }
+        
+        if self.txtContraseña.text?.count == 0{
+            self.crearAlertaController(titulo: "Error", mensaje: "Campo Contraseña vacio", tituloBoton: "Aceptar")
+            return
+        }
+        
+        if self.txtRepetirContraseña.text != txtContraseña.text{
+            self.crearAlertaController(titulo: "Error", mensaje: "Contraseña incorrecta", tituloBoton: "Aceptar")
+            return
+        }
+        
+        if self.txtCarrera.text == ""{
+            self.crearAlertaController(titulo: "Error", mensaje: "Rellenar campo Carrera", tituloBoton: "Aceptar")
+            return
+        }
+        
+        if self.txtSede.text == ""{
+            self.crearAlertaController(titulo: "Error", mensaje: "Rellenar campo Sede", tituloBoton: "Aceptar")
+            return
+        }
+        
+        if self.txtFechaNacimiento.text == ""{
+            self.crearAlertaController(titulo: "Error", mensaje: "Rellenar campo Fecha Nacimiento", tituloBoton: "Aceptar")
+            return
+        }
+    }
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect ?? .zero
+        let animationDuration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double ?? 0
+        UIView.animate(withDuration: animationDuration) {
+            self.constraintBottomScroll.constant = keyboardFrame.height
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        let animationDuration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double ?? 0
+        UIView.animate(withDuration: animationDuration) {
+            self.constraintBottomScroll.constant = 0
+            self.view.layoutIfNeeded()
+        }
+
     }
     
     /*

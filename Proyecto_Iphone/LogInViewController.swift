@@ -22,38 +22,30 @@ class LogInViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
+        
+    @IBAction func btnIniciarSesion(_ sender: UIButton) {
+        self.loadSesion()
+    }
+    
+    @IBAction func btnTeclado(_ sender: Any) {
+        self.view.endEditing(true)
+    }
     
     func loadSesion(){
+        
         if self.txtusuario.text?.isValidEmail == false{
-            let alert = UIAlertController(title: "Error", message: "Ingrese un usuario", preferredStyle: .alert)
-            let botonAlert = UIAlertAction(title: "Aceptar", style: .destructive) { (action) in
-                print("Acabas de presionar la acción Aceptar")
-            }
-            alert.addAction(botonAlert)
-            self.present(alert, animated: true) {
-                
-            }
-        }else{
-            print("Usuario correcto")
+            self.crearAlertaController(titulo: "Error", mensaje: "Ingrese un usuario", tituloBoton: "Aceptar")
+            return
         }
         
         if self.txtcontraseña.text == ""{
-            let alert = UIAlertController(title: "Error", message: "Ingrese una contraseña", preferredStyle: .alert)
-            let botonAlert = UIAlertAction(title: "Aceptar", style: .destructive) { (action) in
-                print("Acabas de presionar la acción Aceptar")
-            }
-            alert.addAction(botonAlert)
-            self.present(alert, animated: true) {
-                
-            }
-        }else{
-            print("Contraseña correcta")
+            self.crearAlertaController(titulo: "Error", mensaje: "Ingrese una contraseña", tituloBoton: "Aceptar")
+            return
         }
+        
+        
     }
     
-    @IBAction func btnIniciarSesion(_ sender: UIButton) {
-        loadSesion()
-    }
     
     /*
     // MARK: - Navigation
@@ -65,6 +57,19 @@ class LogInViewController: UIViewController {
     }
     */
 
+}
+
+extension UIViewController {
+
+    //    MARK: - Creamos una funcion general de alerta, esta funcion se podra llamar en cualquier controlador
+    //    MARK: - Asi reusamos codigo y no creamos una y otra ves el mismo codigo
+    
+    func crearAlertaController(titulo : String, mensaje : String, tituloBoton : String){
+        let alert = UIAlertController(title: titulo, message: mensaje, preferredStyle: .alert)
+        let botonAlerta = UIAlertAction(title: tituloBoton, style: .destructive, handler: nil)
+        alert.addAction(botonAlerta)
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 
 extension String {
