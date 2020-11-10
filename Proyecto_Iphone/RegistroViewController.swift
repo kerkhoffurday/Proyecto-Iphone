@@ -7,18 +7,14 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class RegistroViewController: UIViewController {
 
     @IBOutlet weak var constraintBottomScroll: NSLayoutConstraint!
-    @IBOutlet weak var txtNombres: UITextField!
-    @IBOutlet weak var txtApellidos: UITextField!
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtContraseña: UITextField!
     @IBOutlet weak var txtRepetirContraseña: UITextField!
-    @IBOutlet weak var txtCarrera: UITextField!
-    @IBOutlet weak var txtSede: UITextField!
-    @IBOutlet weak var txtFechaNacimiento: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,44 +46,23 @@ class RegistroViewController: UIViewController {
     
     func validarRegistro(){
     
-        if self.txtNombres.text?.count == 0{
-            self.crearAlertaController(titulo: "Error", mensaje: "Rellenar campo Nombres", tituloBoton: "Aceptar")
+        if self.txtContraseña.text != self.txtRepetirContraseña.text{
+            self.crearAlertaController(titulo: "Error", mensaje: "Contraseñas no son iguales", tituloBoton: "Aceptar"){
+                
+            }
             return
         }
         
-        if self.txtApellidos.text?.count == 0{
-            self.crearAlertaController(titulo: "Error", mensaje: "Rellenar campo Apellidos", tituloBoton: "Aceptar")
-            return
-        }
-        
-        if self.txtEmail.text?.isValidEmail == false{
-            self.crearAlertaController(titulo: "Error", mensaje: "Ingrese un Email", tituloBoton: "Aceptar")
-            return
-        }
-        
-        if self.txtContraseña.text?.count == 0{
-            self.crearAlertaController(titulo: "Error", mensaje: "Campo Contraseña vacio", tituloBoton: "Aceptar")
-            return
-        }
-        
-        if self.txtRepetirContraseña.text != txtContraseña.text{
-            self.crearAlertaController(titulo: "Error", mensaje: "Contraseña incorrecta", tituloBoton: "Aceptar")
-            return
-        }
-        
-        if self.txtCarrera.text == ""{
-            self.crearAlertaController(titulo: "Error", mensaje: "Rellenar campo Carrera", tituloBoton: "Aceptar")
-            return
-        }
-        
-        if self.txtSede.text == ""{
-            self.crearAlertaController(titulo: "Error", mensaje: "Rellenar campo Sede", tituloBoton: "Aceptar")
-            return
-        }
-        
-        if self.txtFechaNacimiento.text == ""{
-            self.crearAlertaController(titulo: "Error", mensaje: "Rellenar campo Fecha Nacimiento", tituloBoton: "Aceptar")
-            return
+        Auth.auth().createUser(withEmail: self.txtEmail.text ?? "", password: self.txtRepetirContraseña.text ?? "") { (Result, Error) in
+            if Error == nil{
+                self.crearAlertaController(titulo: "Felicidades!", mensaje: "Usuario creado correctamente", tituloBoton: "Aceptar"){
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }else{
+                self.crearAlertaController(titulo: "Error", mensaje: Error?.localizedDescription ?? "", tituloBoton: "Aceptar"){
+                    
+                }
+            }
         }
     }
     

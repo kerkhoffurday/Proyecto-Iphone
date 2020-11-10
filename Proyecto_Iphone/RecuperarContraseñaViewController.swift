@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class RecuperarContrasen_aViewController: UIViewController {
 
@@ -22,9 +23,17 @@ class RecuperarContrasen_aViewController: UIViewController {
     }
     
     func validarRecuperarContra() {
-        if self.txtEmail.text?.isValidEmail == false{
-            self.crearAlertaController(titulo: "Error", mensaje: "Ingrese un Email", tituloBoton: "Aceptar")
-            return
+        
+        Auth.auth().sendPasswordReset(withEmail: self.txtEmail.text ?? "") { (Error) in
+            if Error == nil {
+                self.crearAlertaController(titulo: "Contraseña Recuperada", mensaje: "Se envió un link a tu correo electrónico", tituloBoton: "Aceptar"){
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }else{
+                self.crearAlertaController(titulo: "Error", mensaje: Error?.localizedDescription ?? "", tituloBoton: "Aceptar"){
+                    
+                }
+            }
         }
     }
     /*
