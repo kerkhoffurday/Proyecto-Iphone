@@ -16,6 +16,7 @@ class RegistroViewController: UIViewController {
     @IBOutlet weak var txtContraseña: UITextField!
     @IBOutlet weak var txtRepetirContraseña: UITextField!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

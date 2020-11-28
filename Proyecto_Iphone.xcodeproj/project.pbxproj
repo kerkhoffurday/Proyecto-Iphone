@@ -3,15 +3,22 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		9287FFE8D4DB6C3C63BEB15D /* Pods_Proyecto_Iphone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E95F3D32EBBA87F6011FFAE /* Pods_Proyecto_Iphone.framework */; };
 		B2456A822553A0E500F9A9E4 /* HOMEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2456A812553A0E500F9A9E4 /* HOMEViewController.swift */; };
+		B2822179256ECE8A004CED10 /* PublicacionDetalleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2822178256ECE8A004CED10 /* PublicacionDetalleViewController.swift */; };
+		B282217E256ED2A9004CED10 /* DetallePublicacionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B282217D256ED2A9004CED10 /* DetallePublicacionTableViewCell.swift */; };
+		B2B38C4A256DDBAE00AC39EB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2B38C49256DDBAE00AC39EB /* GoogleService-Info.plist */; };
 		BB2C64472530C1A000B58FE4 /* RegistroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2C64462530C1A000B58FE4 /* RegistroViewController.swift */; };
 		BB2C64492530C1C300B58FE4 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2C64482530C1C300B58FE4 /* LogInViewController.swift */; };
 		BB2C644B2530C1DA00B58FE4 /* RecuperarContraseñaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2C644A2530C1DA00B58FE4 /* RecuperarContraseñaViewController.swift */; };
+		BB4FE967256C8F6500E9D401 /* PublicacionesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4FE966256C8F6500E9D401 /* PublicacionesViewController.swift */; };
+		BB56EB1F256CA55900E58338 /* PublicacionBE.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB56EB1E256CA55900E58338 /* PublicacionBE.swift */; };
+		BB56EB21256CA89500E58338 /* TableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB56EB20256CA89500E58338 /* TableViewCells.swift */; };
+		BB57F405256D989600B7D83D /* DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB57F404256D989600B7D83D /* DownloadImage.swift */; };
 		BB5AB89F252E2B9C0096D449 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5AB89E252E2B9C0096D449 /* AppDelegate.swift */; };
 		BB5AB8A1252E2B9C0096D449 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5AB8A0252E2B9C0096D449 /* SceneDelegate.swift */; };
 		BB5AB8A3252E2B9C0096D449 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5AB8A2252E2B9C0096D449 /* ViewController.swift */; };
@@ -21,7 +28,6 @@
 		BB5AB8B6252E2BA90096D449 /* Proyecto_IphoneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5AB8B5252E2BA90096D449 /* Proyecto_IphoneTests.swift */; };
 		BB5AB8C1252E2BA90096D449 /* Proyecto_IphoneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5AB8C0252E2BA90096D449 /* Proyecto_IphoneUITests.swift */; };
 		BB5AB8D0252E54C60096D449 /* Login.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB5AB8CF252E54C60096D449 /* Login.xcassets */; };
-		BBE454B5255AD69800EA282F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBE454B4255AD69800EA282F /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,10 +51,17 @@
 		6E95F3D32EBBA87F6011FFAE /* Pods_Proyecto_Iphone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Proyecto_Iphone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8919A40873F7F15B35DBC756 /* Pods-Proyecto_Iphone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Proyecto_Iphone.debug.xcconfig"; path = "Target Support Files/Pods-Proyecto_Iphone/Pods-Proyecto_Iphone.debug.xcconfig"; sourceTree = "<group>"; };
 		B2456A812553A0E500F9A9E4 /* HOMEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HOMEViewController.swift; sourceTree = "<group>"; };
+		B2822178256ECE8A004CED10 /* PublicacionDetalleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicacionDetalleViewController.swift; sourceTree = "<group>"; };
+		B282217D256ED2A9004CED10 /* DetallePublicacionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetallePublicacionTableViewCell.swift; sourceTree = "<group>"; };
+		B2B38C49256DDBAE00AC39EB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B8DE174A279273FAF4F9BE76 /* Pods-Proyecto_Iphone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Proyecto_Iphone.release.xcconfig"; path = "Target Support Files/Pods-Proyecto_Iphone/Pods-Proyecto_Iphone.release.xcconfig"; sourceTree = "<group>"; };
 		BB2C64462530C1A000B58FE4 /* RegistroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistroViewController.swift; sourceTree = "<group>"; };
 		BB2C64482530C1C300B58FE4 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		BB2C644A2530C1DA00B58FE4 /* RecuperarContraseñaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecuperarContraseñaViewController.swift"; sourceTree = "<group>"; };
+		BB4FE966256C8F6500E9D401 /* PublicacionesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicacionesViewController.swift; sourceTree = "<group>"; };
+		BB56EB1E256CA55900E58338 /* PublicacionBE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicacionBE.swift; sourceTree = "<group>"; };
+		BB56EB20256CA89500E58338 /* TableViewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCells.swift; sourceTree = "<group>"; };
+		BB57F404256D989600B7D83D /* DownloadImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadImage.swift; sourceTree = "<group>"; };
 		BB5AB89B252E2B9B0096D449 /* Proyecto_Iphone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Proyecto_Iphone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB5AB89E252E2B9C0096D449 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB5AB8A0252E2B9C0096D449 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,7 +77,6 @@
 		BB5AB8C0252E2BA90096D449 /* Proyecto_IphoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Proyecto_IphoneUITests.swift; sourceTree = "<group>"; };
 		BB5AB8C2252E2BA90096D449 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB5AB8CF252E54C60096D449 /* Login.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Login.xcassets; sourceTree = "<group>"; };
-		BBE454B4255AD69800EA282F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +111,6 @@
 				8919A40873F7F15B35DBC756 /* Pods-Proyecto_Iphone.debug.xcconfig */,
 				B8DE174A279273FAF4F9BE76 /* Pods-Proyecto_Iphone.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -148,7 +159,12 @@
 				BB2C64482530C1C300B58FE4 /* LogInViewController.swift */,
 				BB2C644A2530C1DA00B58FE4 /* RecuperarContraseñaViewController.swift */,
 				B2456A812553A0E500F9A9E4 /* HOMEViewController.swift */,
-				BBE454B4255AD69800EA282F /* GoogleService-Info.plist */,
+				BB4FE966256C8F6500E9D401 /* PublicacionesViewController.swift */,
+				B2B38C49256DDBAE00AC39EB /* GoogleService-Info.plist */,
+				BB56EB1E256CA55900E58338 /* PublicacionBE.swift */,
+				BB56EB20256CA89500E58338 /* TableViewCells.swift */,
+				B2822178256ECE8A004CED10 /* PublicacionDetalleViewController.swift */,
+				B282217D256ED2A9004CED10 /* DetallePublicacionTableViewCell.swift */,
 			);
 			path = Proyecto_Iphone;
 			sourceTree = "<group>";
@@ -174,6 +190,7 @@
 		BB5AB8CE252E54900096D449 /* Recursos */ = {
 			isa = PBXGroup;
 			children = (
+				BB57F404256D989600B7D83D /* DownloadImage.swift */,
 				BB5AB8CF252E54C60096D449 /* Login.xcassets */,
 			);
 			path = Recursos;
@@ -288,7 +305,7 @@
 			files = (
 				BB5AB8AB252E2BA90096D449 /* LaunchScreen.storyboard in Resources */,
 				BB5AB8A8252E2BA90096D449 /* Assets.xcassets in Resources */,
-				BBE454B5255AD69800EA282F /* GoogleService-Info.plist in Resources */,
+				B2B38C4A256DDBAE00AC39EB /* GoogleService-Info.plist in Resources */,
 				BB5AB8A6252E2B9D0096D449 /* Main.storyboard in Resources */,
 				BB5AB8D0252E54C60096D449 /* Login.xcassets in Resources */,
 			);
@@ -374,12 +391,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2822179256ECE8A004CED10 /* PublicacionDetalleViewController.swift in Sources */,
 				BB5AB8A3252E2B9C0096D449 /* ViewController.swift in Sources */,
 				BB2C64472530C1A000B58FE4 /* RegistroViewController.swift in Sources */,
 				BB2C644B2530C1DA00B58FE4 /* RecuperarContraseñaViewController.swift in Sources */,
+				BB56EB21256CA89500E58338 /* TableViewCells.swift in Sources */,
 				BB5AB89F252E2B9C0096D449 /* AppDelegate.swift in Sources */,
+				BB4FE967256C8F6500E9D401 /* PublicacionesViewController.swift in Sources */,
+				BB57F405256D989600B7D83D /* DownloadImage.swift in Sources */,
 				BB2C64492530C1C300B58FE4 /* LogInViewController.swift in Sources */,
 				BB5AB8A1252E2B9C0096D449 /* SceneDelegate.swift in Sources */,
+				BB56EB1F256CA55900E58338 /* PublicacionBE.swift in Sources */,
+				B282217E256ED2A9004CED10 /* DetallePublicacionTableViewCell.swift in Sources */,
 				B2456A822553A0E500F9A9E4 /* HOMEViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

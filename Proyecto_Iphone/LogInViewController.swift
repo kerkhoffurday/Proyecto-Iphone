@@ -11,12 +11,13 @@ import FirebaseAuth
 
 class LogInViewController: UIViewController {
 
-    @IBOutlet weak var txtcontraseña: UITextField!
-    @IBOutlet weak var txtusuario: UITextField!
+    @IBOutlet weak var txtcontraseña    : UITextField!
+    @IBOutlet weak var txtusuario       : UITextField!
+    @IBOutlet weak var cargarIndicador  : UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -33,11 +34,16 @@ class LogInViewController: UIViewController {
     }
     
     func loadSesion(){
+        let objUsuario = UsuarioBE()
+        self.cargarIndicador.startAnimating()
         
-        Auth.auth().signIn(withEmail: self.txtusuario.text ?? "", password: self.txtcontraseña.text ?? "") { (Result, Error) in
+        Auth.auth().signIn(withEmail: self.txtusuario.text ?? "", password: self.txtcontraseña.text ?? "") { (result, Error) in
+            self.cargarIndicador.stopAnimating()
             if Error == nil {
+                objUsuario.correo = self.txtusuario.text ?? ""
+                objUsuario.id = result?.user.uid ?? ""
                 print("Ingreso correctamente")
-                self.performSegue(withIdentifier: "HOMEViewController", sender: nil)
+                self.performSegue(withIdentifier: "HOMEViewController", sender: objUsuario)
             }else{
                 self.crearAlertaController(titulo: "Error", mensaje: Error?.localizedDescription ?? "", tituloBoton: "Aceptar") {
                     
@@ -48,15 +54,19 @@ class LogInViewController: UIViewController {
     }
     
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "HOMEViewController"{
+            let controller = segue.destination as? HOMEViewController
+            controller?.objUsuario = sender as? UsuarioBE ?? UsuarioBE.init()
+        }
     }
-    */
+    
 
 }
 

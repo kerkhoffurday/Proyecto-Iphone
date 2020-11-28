@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>989359774288-8n73vqaposc6478u3ppj1bt82lli580i.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.989359774288-8n73vqaposc6478u3ppj1bt82lli580i</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDQK6Cv12SrG32UMEiDLg4VZPGP7UoFiFI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>989359774288</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>pe.isil</string>
+	<key>PROJECT_ID</key>
+	<string>isil-iphone</string>
+	<key>STORAGE_BUCKET</key>
+	<string>isil-iphone.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:989359774288:ios:62f4b32732055964604f55</string>
+	<key>DATABASE_URL</key>
+	<string>https://isil-iphone.firebaseio.com</string>
+</dict>
+</plist>
