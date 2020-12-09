@@ -9,6 +9,10 @@
 import UIKit
 import Firebase
 
+protocol TableViewCellsDelegate {
+    func detallePerfil(_ clase : TableViewCells, objPublicacion: PublicacionBE)
+}
+
 class TableViewCells: UITableViewCell{
     
     @IBOutlet weak public var lblNombre : UILabel!
@@ -19,7 +23,9 @@ class TableViewCells: UITableViewCell{
     @IBOutlet weak public var lblLikes  : UILabel!
     @IBOutlet weak public var lblComentarios : UILabel!
     @IBOutlet weak public var constraintImage : NSLayoutConstraint!
+    @IBOutlet weak var btnEliminar : UIButton!
     
+    var delegate : TableViewCellsDelegate?
     public var objUser = UsuarioBE()
     public var objPublicacion: PublicacionBE!{
         didSet{
@@ -29,6 +35,11 @@ class TableViewCells: UITableViewCell{
     
     
     func updateData(){
+        if self.objUser.id == self.objPublicacion.idUsuario {
+            self.btnEliminar.alpha = 1
+        }else{
+            self.btnEliminar.alpha = 0
+        }
         //Si mi imagen no tiene una url la imagen de achica  0 pero si tiene una url se queda en 130 de tamaño
         if self.objPublicacion.img == ""{
             self.constraintImage.constant = 0
@@ -60,6 +71,17 @@ class TableViewCells: UITableViewCell{
         }else{
             self.enviarLike(state: true)
         }
+    }
+    
+    @IBAction func btnPerfil(_ sender : UIButton){
+        self.delegate?.detallePerfil(self, objPublicacion: self.objPublicacion)
+    }
+    
+    @IBAction func btnEliminar(_ sender : UIButton){
+        var referenciaDB : DatabaseReference!
+        let url = "ISIL/Publicaciones/\(self.objPublicacion.statePublicacion)"
+        referenciaDB = Database.database().reference().child(url)
+        referenciaDB.setValue(nil)
     }
  
     func enviarLike(state : Bool){

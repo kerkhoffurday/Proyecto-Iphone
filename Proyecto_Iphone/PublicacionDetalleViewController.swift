@@ -30,9 +30,28 @@ class PublicacionDetalleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.cargarDetalle()
+        self.cargar()
         self.cargarComentario()
         // Do any additional setup after loading the view.
+    }
+    
+    func cargar(){
+        var refUser : DatabaseReference!
+        refUser = Database.database().reference().child("ISIL").child("usuarios").child(self.objUsuario.id)
+        
+        refUser.observe(DataEventType.value, with: { (result) in
+            let parce = result.value as? [String : Any]
+            let nombre = parce?["nombre"] as? String ?? ""
+            let apellido = parce?["apellido"] as? String ?? ""
+            let correo = parce?["correo"] as? String ?? ""
+            let id = parce?["id"] as? String ?? ""
+            
+            self.objUsuario.nombre = nombre
+            self.objUsuario.apellido = apellido
+            self.objUsuario.correo  = correo
+            self.objUsuario.id = id
+        })
+        self.cargarDetalle()
     }
     
     func cargarDetalle(){
@@ -76,8 +95,10 @@ class PublicacionDetalleViewController: UIViewController {
                 let correo      = parceComent?["correo"] as? String ?? ""
                 arrayData.append(ComentariosBE(id: id,comentario: comentario, correo: correo))
             }
-            self.lblComentarios.text = "\(self.arrayComentarios.count) Comentarios"
+            
             self.arrayComentarios = arrayData
+            
+            self.lblComentarios.text = "\(self.arrayComentarios.count) Comentarios"
             self.tblComentario.reloadData()
         }) { (error) in
             
@@ -109,14 +130,16 @@ class PublicacionDetalleViewController: UIViewController {
         referenciaDB = Database.database().reference().child(url).childByAutoId()
   
         let agregar : [String : Any] = ["id" : "",
-                                        "correo" : self.objUsuario.correo,
+                                        "correo" : self.objUsuario.nombre + " " + self.objUsuario.apellido ,
                                         "comentario" : self.txtCometario.text ?? ""]
         
         referenciaDB.setValue(agregar) { (error, dataReference) in
             self.cargarIndicador.stopAnimating()
             if error == nil{
                 referenciaDB.child("id").setValue(dataReference.key ?? "") { (error, data) in
-                    
+                    if error == nil{
+                        self.txtCometario.text = "" 
+                    }
                 }
             }else{
                 self.cargarIndicador.stopAnimating()

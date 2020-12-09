@@ -1,31 +1,44 @@
 //
-//  HOMEViewController.swift
+//  DetallePerfilViewController.swift
 //  Proyecto_Iphone
 //
-//  Created by Patrick Kerkhoff on 10/9/20.
+//  Created by Patrick Kerkhoff on 11/23/20.
 //  Copyright © 2020 Patrick Kerkhoff. All rights reserved.
 //
-
 
 import UIKit
 import Firebase
 
-class HOMEViewController: UIViewController {
+class DetallePerfilViewController: UIViewController {
 
     @IBOutlet weak var tablePublicacion : UITableView!
+    @IBOutlet weak var lblNombre : UILabel!
+    @IBOutlet weak var lblApellido : UILabel!
+    @IBOutlet weak var lblCorreo : UILabel!
+    @IBOutlet weak var btnEditar : UIButton!
     
     var objUsuario = UsuarioBE()
-    
-    var arrayPublicaciones = [PublicacionBE]()
+    var objPublica  : PublicacionBE!
+    var arrayPublica = [PublicacionBE]()
+    var objDetalle  = UsuarioBE()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.cargar()
         // Do any additional setup after loading the view.
     }
+    
+    
     func cargar(){
+
+        if self.objUsuario.id == self.objPublica.idUsuario{
+            self.btnEditar.alpha = 1
+        }else{
+            self.btnEditar.alpha = 0
+        }
+        
         var refUser : DatabaseReference!
-        refUser = Database.database().reference().child("ISIL").child("usuarios").child(self.objUsuario.id)
+        refUser = Database.database().reference().child("ISIL").child("usuarios").child(self.objPublica.idUsuario)
         
         refUser.observe(DataEventType.value, with: { (result) in
             
@@ -35,26 +48,20 @@ class HOMEViewController: UIViewController {
             let correo = parce?["correo"] as? String ?? ""
             let id = parce?["id"] as? String ?? ""
             
-            self.objUsuario.nombre = nombre
-            self.objUsuario.apellido = apellido
-            self.objUsuario.correo  = correo
-            self.objUsuario.id = id
+            self.objDetalle.nombre = nombre
+            self.objDetalle.apellido = apellido
+            self.objDetalle.correo  = correo
+            self.objDetalle.id = id
             
-            var arraySeguidores = [SeguidoresBE]()
-            for objLike in result.childSnapshot(forPath: "seguidores").children{
-                
-                let parceSeg = (objLike as? DataSnapshot)?.value as? [String: Any]
-                let idUsuario = parceSeg?["id"] as? String ?? ""
-                arraySeguidores.append(SeguidoresBE(id: idUsuario))
-            }
+            self.lblNombre.text = nombre
+            self.lblApellido.text = apellido
+            self.lblCorreo.text = correo
             
-            arraySeguidores.append(SeguidoresBE(id: self.objUsuario.id))
-            
-            self.cargarPublicaciones(usuario : arraySeguidores)
+            self.cargarPublicaciones()
         })
     }
 
-    func cargarPublicaciones(usuario : [SeguidoresBE]){
+    func cargarPublicaciones(){
         
         var referenciaDB : DatabaseReference!
         referenciaDB = Database.database().reference().child("ISIL").child("Publicaciones")
@@ -97,50 +104,25 @@ class HOMEViewController: UIViewController {
                 arrayData.append(PublicacionBE(nombre: nombre, fehca: fehca, imagen: imagen, descripcion: descripcion, likes: likes, comentarios: comentarios,stateLike: filterLike,state: id, idUsuario: idUsuario ?? ""))
             }
             
-            var arrayFilter = [PublicacionBE]()
+            let arrayFiltro = arrayData.filter({$0.idUsuario == self.objPublica.idUsuario})
             
-            for item in usuario{
-                for item2 in arrayData{
-                    if item.id == item2.idUsuario{
-                        arrayFilter.append(item2)
-                    }
-                }
-            }
-
-            self.arrayPublicaciones = arrayFilter
+            self.arrayPublica = arrayFiltro
             self.tablePublicacion.reloadData()
         }) { (error) in
             
         }
     }
     
-    @IBAction func btnTeclado(_ sender: Any) {
-        self.view.endEditing(true)
-    }
-    
-    @IBAction func btnAgregarPublicacion(_ sender: Any) {
-        self.performSegue(withIdentifier: "PublicacionesViewController", sender: self.objUsuario)
-    }
-    
     @IBAction func btnExit(_ sender : UIButton){
         self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func btnSeguidores(_ sender : UIButton){
-        self.performSegue(withIdentifier: "SeguirPerfilesViewController", sender: nil)
+    @IBAction func btnEditar(_ sender : UIButton){
+        self.performSegue(withIdentifier: "EditarPerfilViewController", sender: nil)
     }
     
-    @IBAction func btnPerfil(_ sender : UIButton){
-        let publicacion = PublicacionBE(nombre: "", fehca: "", imagen: "", descripcion: "", likes: [LikesBE].init(), comentarios: [ComentariosBE].init(), stateLike: 0, state: "", idUsuario: self.objUsuario.id)
-        self.performSegue(withIdentifier: "DetallePerfilViewController", sender: publicacion)
-    }
-  
-    // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
         
         if segue.identifier == "PublicacionesViewController"{
             let vista = segue.destination as? PublicacionesViewController
@@ -153,16 +135,15 @@ class HOMEViewController: UIViewController {
             let vista = segue.destination as? DetallePerfilViewController
             vista?.objUsuario = self.objUsuario
             vista?.objPublica = sender as? PublicacionBE
-        }else if segue.identifier == "SeguirPerfilesViewController"{
-            let vista = segue.destination as? SeguirPerfilesViewController
-            vista?.objUsuario = self.objUsuario
+        }else if segue.identifier == "EditarPerfilViewController"{
+            let vista = segue.destination as? EditarPerfilViewController
+            vista?.objDetalle = self.objDetalle
         }
     }
 
-
 }
 
-extension HOMEViewController : UITableViewDataSource, UITableViewDelegate, TableViewCellsDelegate{
+extension DetallePerfilViewController : UITableViewDataSource, UITableViewDelegate, TableViewCellsDelegate{
     
     func detallePerfil(_ clase: TableViewCells, objPublicacion: PublicacionBE) {
         self.performSegue(withIdentifier: "DetallePerfilViewController", sender: objPublicacion)
@@ -173,7 +154,7 @@ extension HOMEViewController : UITableViewDataSource, UITableViewDelegate, Table
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.arrayPublicaciones.count
+        return self.arrayPublica.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -182,14 +163,14 @@ extension HOMEViewController : UITableViewDataSource, UITableViewDelegate, Table
         
         cell.objUser = self.objUsuario
         cell.delegate = self
-        cell.objPublicacion = self.arrayPublicaciones[indexPath.row]
+        cell.objPublicacion = self.arrayPublica[indexPath.row]
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let obj = self.arrayPublicaciones[indexPath.row]
+        let obj = self.arrayPublica[indexPath.row]
         self.performSegue(withIdentifier: "PublicacionDetalleViewController", sender: obj)
     }
 }

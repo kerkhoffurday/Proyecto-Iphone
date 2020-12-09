@@ -20,6 +20,25 @@ class PublicacionesViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.cargar()
+    }
+    
+    func cargar(){
+        var refUser : DatabaseReference!
+        refUser = Database.database().reference().child("ISIL").child("usuarios").child(self.objUser.id)
+        
+        refUser.observe(DataEventType.value, with: { (result) in
+            let parce = result.value as? [String : Any]
+            let nombre = parce?["nombre"] as? String ?? ""
+            let apellido = parce?["apellido"] as? String ?? ""
+            let correo = parce?["correo"] as? String ?? ""
+            let id = parce?["id"] as? String ?? ""
+            
+            self.objUser.nombre = nombre
+            self.objUser.apellido = apellido
+            self.objUser.correo  = correo
+            self.objUser.id = id
+        })
     }
     
     @IBAction func btnExit(_ sender : UIButton){
@@ -60,7 +79,7 @@ class PublicacionesViewController: UIViewController{
         metadata.contentType = "image/jpeg"
         
         //if contiene una imagen entra al if en caso no tenga una imagen hace una publicacion sin imagen
-        if let imagen = self.postFotoView.image?.jpegData(compressionQuality: 0.5){
+        if let imagen = self.postFotoView.image?.jpegData(compressionQuality: 0.3){
             
             publicar.putData(imagen, metadata: metadata) { (store, error) in
                 if error == nil{
@@ -89,8 +108,9 @@ class PublicacionesViewController: UIViewController{
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         
-        let agregar : [String : Any] = ["nombre" : self.objUser.correo,
+        let agregar : [String : Any] = ["nombre" : self.objUser.nombre + " " + self.objUser.apellido,
                                         "descripcion" : self.txtDescripcion.text ?? "",
+                                        "idUsuario" : self.objUser.id,
                                         "imagen" : url,
                                         "fecha" : dateFormatter.string(from: date)]
         

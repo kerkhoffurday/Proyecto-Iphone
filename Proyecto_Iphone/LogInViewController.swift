@@ -40,6 +40,7 @@ class LogInViewController: UIViewController {
         Auth.auth().signIn(withEmail: self.txtusuario.text ?? "", password: self.txtcontraseña.text ?? "") { (result, Error) in
             self.cargarIndicador.stopAnimating()
             if Error == nil {
+                objUsuario.nombre = ""  
                 objUsuario.correo = self.txtusuario.text ?? ""
                 objUsuario.id = result?.user.uid ?? ""
                 print("Ingreso correctamente")

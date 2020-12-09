@@ -18,8 +18,9 @@ class PublicacionBE{
     var descripcion: String
     var likes = [LikesBE]()
     var comentarios = [ComentariosBE]()
+    var idUsuario  : String
 
-    init(nombre: String, fehca: String, imagen: String, descripcion: String, likes: [LikesBE], comentarios:[ComentariosBE],stateLike : Int, state : String){
+    init(nombre: String, fehca: String, imagen: String, descripcion: String, likes: [LikesBE], comentarios:[ComentariosBE],stateLike : Int, state : String,idUsuario : String){
         self.nombre_usuario = nombre
         self.fecha = fehca
         self.img = imagen
@@ -28,7 +29,9 @@ class PublicacionBE{
         self.comentarios = comentarios
         self.statePublicacion = state
         self.stateLike = stateLike
+        self.idUsuario  = idUsuario
     }
+    
 }
 
 class LikesBE{
@@ -57,4 +60,15 @@ class UsuarioBE: NSObject{
     var comentario = ""
     var id = ""
     var like = 0
+    var nombre = ""
+    var apellido = ""
+    var state = 0
+}
+
+class SeguidoresBE: NSObject{
+    
+    var id = ""
+    init(id: String){
+        self.id = id
+    }
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import Firebase
 
 class RegistroViewController: UIViewController {
 
@@ -54,13 +55,29 @@ class RegistroViewController: UIViewController {
             return
         }
         
-        Auth.auth().createUser(withEmail: self.txtEmail.text ?? "", password: self.txtRepetirContraseña.text ?? "") { (Result, Error) in
-            if Error == nil{
-                self.crearAlertaController(titulo: "Felicidades!", mensaje: "Usuario creado correctamente", tituloBoton: "Aceptar"){
-                    self.dismiss(animated: true, completion: nil)
+        Auth.auth().createUser(withEmail: self.txtEmail.text ?? "", password: self.txtRepetirContraseña.text ?? "") { (result, error) in
+            if error == nil{
+                
+                var referenciaDB : DatabaseReference!
+                referenciaDB = Database.database().reference().child("ISIL").child("usuarios")
+                
+                let armado : [String : Any] = ["nombre" : self.txtEmail.text ?? "",
+                                               "correo" : self.txtEmail.text ?? "",
+                                               "apellido" : "",
+                                               "id" : result?.user.uid ?? ""]
+                
+                referenciaDB.child(result?.user.uid ?? "").setValue(armado) { (error, result) in
+                    if error == nil{
+                        self.crearAlertaController(titulo: "Felicidades!", mensaje: "Usuario creado correctamente", tituloBoton: "Aceptar"){
+                            self.dismiss(animated: true, completion: nil)
+                        }
+                    }else{
+                        
+                    }
                 }
+    
             }else{
-                self.crearAlertaController(titulo: "Error", mensaje: Error?.localizedDescription ?? "", tituloBoton: "Aceptar"){
+                self.crearAlertaController(titulo: "Error", mensaje: error?.localizedDescription ?? "", tituloBoton: "Aceptar"){
                     
                 }
             }

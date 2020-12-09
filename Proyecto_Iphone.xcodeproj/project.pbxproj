@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		9287FFE8D4DB6C3C63BEB15D /* Pods_Proyecto_Iphone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E95F3D32EBBA87F6011FFAE /* Pods_Proyecto_Iphone.framework */; };
+		B231E8A3257EF0430039497F /* DetallePerfilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B231E8A2257EF0430039497F /* DetallePerfilViewController.swift */; };
+		B231E8A8257F035F0039497F /* EditarPerfilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B231E8A7257F035F0039497F /* EditarPerfilViewController.swift */; };
+		B231E8AD257F3CFD0039497F /* SeguirPerfilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B231E8AC257F3CFC0039497F /* SeguirPerfilesViewController.swift */; };
+		B231E8B2257F41E30039497F /* SeguirPerfilesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B231E8B1257F41E30039497F /* SeguirPerfilesTableViewCell.swift */; };
 		B2456A822553A0E500F9A9E4 /* HOMEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2456A812553A0E500F9A9E4 /* HOMEViewController.swift */; };
 		B2822179256ECE8A004CED10 /* PublicacionDetalleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2822178256ECE8A004CED10 /* PublicacionDetalleViewController.swift */; };
 		B282217E256ED2A9004CED10 /* DetallePublicacionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B282217D256ED2A9004CED10 /* DetallePublicacionTableViewCell.swift */; };
@@ -50,6 +54,10 @@
 /* Begin PBXFileReference section */
 		6E95F3D32EBBA87F6011FFAE /* Pods_Proyecto_Iphone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Proyecto_Iphone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8919A40873F7F15B35DBC756 /* Pods-Proyecto_Iphone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Proyecto_Iphone.debug.xcconfig"; path = "Target Support Files/Pods-Proyecto_Iphone/Pods-Proyecto_Iphone.debug.xcconfig"; sourceTree = "<group>"; };
+		B231E8A2257EF0430039497F /* DetallePerfilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetallePerfilViewController.swift; sourceTree = "<group>"; };
+		B231E8A7257F035F0039497F /* EditarPerfilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditarPerfilViewController.swift; sourceTree = "<group>"; };
+		B231E8AC257F3CFC0039497F /* SeguirPerfilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeguirPerfilesViewController.swift; sourceTree = "<group>"; };
+		B231E8B1257F41E30039497F /* SeguirPerfilesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeguirPerfilesTableViewCell.swift; sourceTree = "<group>"; };
 		B2456A812553A0E500F9A9E4 /* HOMEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HOMEViewController.swift; sourceTree = "<group>"; };
 		B2822178256ECE8A004CED10 /* PublicacionDetalleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicacionDetalleViewController.swift; sourceTree = "<group>"; };
 		B282217D256ED2A9004CED10 /* DetallePublicacionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetallePublicacionTableViewCell.swift; sourceTree = "<group>"; };
@@ -165,6 +173,10 @@
 				BB56EB20256CA89500E58338 /* TableViewCells.swift */,
 				B2822178256ECE8A004CED10 /* PublicacionDetalleViewController.swift */,
 				B282217D256ED2A9004CED10 /* DetallePublicacionTableViewCell.swift */,
+				B231E8A2257EF0430039497F /* DetallePerfilViewController.swift */,
+				B231E8A7257F035F0039497F /* EditarPerfilViewController.swift */,
+				B231E8AC257F3CFC0039497F /* SeguirPerfilesViewController.swift */,
+				B231E8B1257F41E30039497F /* SeguirPerfilesTableViewCell.swift */,
 			);
 			path = Proyecto_Iphone;
 			sourceTree = "<group>";
@@ -393,12 +405,16 @@
 			files = (
 				B2822179256ECE8A004CED10 /* PublicacionDetalleViewController.swift in Sources */,
 				BB5AB8A3252E2B9C0096D449 /* ViewController.swift in Sources */,
+				B231E8A3257EF0430039497F /* DetallePerfilViewController.swift in Sources */,
 				BB2C64472530C1A000B58FE4 /* RegistroViewController.swift in Sources */,
 				BB2C644B2530C1DA00B58FE4 /* RecuperarContraseñaViewController.swift in Sources */,
 				BB56EB21256CA89500E58338 /* TableViewCells.swift in Sources */,
 				BB5AB89F252E2B9C0096D449 /* AppDelegate.swift in Sources */,
 				BB4FE967256C8F6500E9D401 /* PublicacionesViewController.swift in Sources */,
+				B231E8B2257F41E30039497F /* SeguirPerfilesTableViewCell.swift in Sources */,
 				BB57F405256D989600B7D83D /* DownloadImage.swift in Sources */,
+				B231E8AD257F3CFD0039497F /* SeguirPerfilesViewController.swift in Sources */,
+				B231E8A8257F035F0039497F /* EditarPerfilViewController.swift in Sources */,
 				BB2C64492530C1C300B58FE4 /* LogInViewController.swift in Sources */,
 				BB5AB8A1252E2B9C0096D449 /* SceneDelegate.swift in Sources */,
 				BB56EB1F256CA55900E58338 /* PublicacionBE.swift in Sources */,
